@@ -1,0 +1,26 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    curl -LJO https://unified-agent.s3.amazonaws.com/wss-unified-agent.jar
+    echo Unified Agent downloaded successfully
+    java -jar wss-unified-agent.jar
+  env:
+    WS_APIKEY: 250865dd939049cabc5c954806c92f5f03ba0bb0398b4739980edc84374af819
+    WS_USERKEY: 19b3f57a82f2450e9fb8a14f38d7a96d3f0f6d4cdb7046aea4f93abe0bda51c2
+    WS_WSS_URL: https://saas.whitesourcesoftware.com/api/v1.3
+    WS_PRODUCTNAME: Demo Product
+    WS_PROJECTNAME: Demo Data - 1
+  displayName: 'Mend Unified Agent Scan'

@@ -6,6 +6,12 @@
   env:
     WS_APIKEY: $(APIKEY)
     WS_USERKEY: $(USERKEY)
+- task: Checkmarx AST@2
+  inputs:
+    CheckmarxService: 'susant@meteonic.com'
+    projectName: 'ME_Webgoat'
+    branchName: 'main'
+    tenantName: 'ama-partners'
     WS_WSS_URL: $(WSS_URL)
     WS_PRODUCTNAME: AZDO_$(System.TeamProject)
     WS_PROJECTNAME: $(Build.Repository.Name)_$(Build.SourceBranchName)

@@ -1,6 +1,12 @@
 # Starter pipeline
 - script: |
-    curl -LJO https://unified-agent.s3.amazonaws.com/wss-unified-agent.jar
+
+- task: Checkmarx AST@2
+  inputs:
+    CheckmarxService: 'susant@meteonic.com'
+    projectName: 'ME_Webgoat'
+    branchName: '$(Build.SourceBranchName)'
+    tenantName: 'ama-partners'
     echo Unified Agent downloaded successfully
     java -jar wss-unified-agent.jar
   env:
